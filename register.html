@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head><title>Register</title></head>
+<body>
+  <div id="nav-placeholder"></div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>$("#nav-placeholder").load("navbar.html");</script>
+
+  <h2>Register</h2>
+  <form>
+    <label>🆔 Username:</label><br>
+    <input type="text"><br>
+    <label>	📧 Email:</label><br>
+    <input type="email"><br>
+    <label> 🔒 Password:</label><br>
+    <input type="password"><br><br>
+    <input type="✅ submit" value="📝 Register">
+  </form>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color:turquoise;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #333;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+  </body>
+  </html>

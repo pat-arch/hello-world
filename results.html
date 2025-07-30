@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voting Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .role-section {
+      margin-bottom: 30px;
+    }
+    .role-section h3 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Voting Results</h2>
+  <div id="resultsContainer"></div>
+
+  <script>
+    const resultsContainer = document.getElementById('resultsContainer');
+    const votes = JSON.parse(localStorage.getItem('votes') || '{}');
+
+    for (const role in votes) {
+      const roleDiv = document.createElement('div');
+      roleDiv.className = 'role-section';
+
+      const roleTitle = role.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      roleDiv.innerHTML = `<h3>${roleTitle}</h3>`;
+
+      const ul = document.createElement('ul');
+      for (const candidate in votes[role]) {
+        const li = document.createElement('li');
+        li.textContent = `${candidate}: ${votes[role][candidate]} vote(s)`;
+        ul.appendChild(li);
+      }
+
+      roleDiv.appendChild(ul);
+      resultsContainer.appendChild(roleDiv);
+    }
+  </script>
+
+</body>
+</html>
+
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    margin: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+  }
+
+  .role-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-left: 5px solid #3498db;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+  }
+
+  .role-section h3 {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #2980b9;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    background-color: #fff;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  li:hover {
+    background-color: #dfe6e9;
+  }
+
+  p {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+</style>

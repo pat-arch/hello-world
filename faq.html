@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FAQ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:aquamarine;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #nav-placeholder {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #333;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    p {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 10px;
+    }
+
+    strong {
+      display: block;
+      color: #007BFF;
+      margin-bottom: 5px;
+    }
+    p:hover{
+      background-color:#eef;
+    }
+    body{
+      max-width:800px;
+      margin:auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $("#nav-placeholder").load("navbar.html");
+  </script>
+
+  <h2>Frequently Asked Questions</h2>
+  <p><strong>How do I vote?</strong>Login and go to the Vote page.</p>
+  <p><strong>Can I vote more than once?</strong>No, only one vote per user.</p>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cast Your Vote</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Cast Your Vote</h2>
+
+  <form id="voteForm">
+    <label for="role">Select Role:</label>
+    <select id="role" name="role" required>
+      <option value="">-- Choose a Role --</option>
+      <option value="president">President</option>
+      <option value="deputy_president">Deputy President</option>
+      <option value="dean">Dean</option>
+      <option value="hostel_representative">Hostel Representative</option>
+      <option value="treasurer">Treasurer</option>
+    </select>
+
+    <br><br>
+
+    <label for="candidate">Select Candidate:</label>
+    <select id="candidate" name="candidate" required>
+      <option value="">-- Choose a Candidate --</option>
+    </select>
+
+    <br><br>
+<form action="/submit" method="post">
+  <button type="submit">Submit</button>
+
+
+
+
+
+    <p id="voteMessage" style="display: none;"></p>
+    
+
+  </form>
+
+  <script>
+    const candidatesByRole = {
+      president: ['Alice Mwangi', 'Brian Otieno', 'Julius Kimani'],
+      deputy_president: ['Cynthia Wanjiru', 'David Kimani'],
+      dean: ['Esther Njoroge', 'Frankline Oduor'],
+      hostel_representative: ['Grace Muthoni', 'Henry Kiptoo'],
+      treasurer: ['Irene Wambui', 'James Kariuki']
+    };
+
+    const roleSelect = document.getElementById('role');
+    const candidateSelect = document.getElementById('candidate');
+
+    roleSelect.addEventListener('change', function () {
+      const selectedRole = this.value;
+      const candidates = candidatesByRole[selectedRole] || [];
+
+      candidateSelect.innerHTML = '<option value="">-- Choose a Candidate --</option>';
+
+      candidates.forEach(candidate => {
+        const option = document.createElement('option');
+        option.value = candidate.toLowerCase().replace(/\s+/g, '_');
+        option.textContent = candidate;
+        candidateSelect.appendChild(option);
+      });
+    });
+
+    document.getElementById('voteForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const role = roleSelect.value;
+      const candidateValue = candidateSelect.value;
+
+      if (role && candidateValue) {
+        // Save vote to localStorage
+        const candidateName = candidateSelect.options[candidateSelect.selectedIndex].text;
+        const votes = JSON.parse(localStorage.getItem('votes') || '{}');
+
+        if (!votes[role]) {
+          votes[role] = {};
+        }
+
+        if (!votes[role][candidateName]) {
+          votes[role][candidateName] = 0;
+        }
+
+        votes[role][candidateName] += 1;
+
+        localStorage.setItem('votes', JSON.stringify(votes));
+
+        // Optionally reset form
+        this.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:hotpink;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #voteMessage {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: green;
+  }
+</style>
